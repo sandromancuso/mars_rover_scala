@@ -1,7 +1,5 @@
 package com.codurance.mars_rover
 
-import com.codurance.mars_rover.Directions.directionFor
-
 class MarsRover(grid: Grid, initialPosition: Position) {
 
 	var currentPosition = initialPosition;
