@@ -15,4 +15,14 @@ class MarsRoverShould extends UnitSpec {
 		marsRover.position should be(initialPosition)
 	}
 
+	"move ahead" in {
+		val initialPosition = Position(0, 0, "N")
+
+		val marsRover = new MarsRover(initialPosition)
+
+		marsRover execute("M")
+
+		marsRover.position should be(Position(0, 1, "N"))
+	}
+
 }
