@@ -9,7 +9,7 @@ class MarsRover(grid: Grid, initialPosition: Position) {
 	def execute(commands: String) =
 	    commands.split("").foreach(cmd =>
 			cmd match {
-				case "M" => currentPosition = currentPosition.moveAhead(grid)
+				case "M" => currentPosition = grid.move(currentPosition)
 				case "R" => currentPosition = currentPosition.turnRight()
 				case "L" => currentPosition = currentPosition.turnLeft()
 			})
@@ -19,14 +19,6 @@ class MarsRover(grid: Grid, initialPosition: Position) {
 }
 
 case class Position(x: Int, y: Int, direction: Direction) {
-
-	def moveAhead(grid: Grid): Position =
-		direction match {
-			case North => Position(x, grid.moveNorth(y), direction)
-			case East  => Position(grid.moveEast(x), y, direction)
-			case South => Position(x, grid.moveSouth(y), direction)
-			case West  => Position(grid.moveWest(x), y, direction)
-		}
 
 	def turnRight(): Position = Position(x, y, directionFor(direction.right).get)
 
@@ -60,16 +52,24 @@ object Directions {
 
 case class Grid(x: Int, y: Int) {
 
-	def moveSouth(currentY: Int): Int =
+	def move(position: Position): Position =
+		position match {
+			case Position(px, py, North) => Position(px, moveNorth(py), North)
+			case Position(px, py, East)  => Position(moveEast(px), py, East)
+			case Position(px, py, South) => Position(px, moveSouth(py), South)
+			case Position(px, py, West)  => Position(moveWest(px), py, position.direction)
+		}
+
+	private def moveSouth(currentY: Int): Int =
 		if (currentY == 0) y - 1 else currentY - 1;
 
-	def moveNorth(currentY: Int): Int =
+	private def moveNorth(currentY: Int): Int =
 		if (currentY == y - 1) 0 else currentY + 1;
 
-	def moveWest(currentX: Int): Int =
+	private def moveWest(currentX: Int): Int =
 		if (currentX == 0) x - 1 else currentX - 1;
 
-	def moveEast(currentX: Int): Int =
+	private def moveEast(currentX: Int): Int =
 		if (currentX == x - 1) 0 else currentX + 1;
 }
 
