@@ -25,7 +25,7 @@ case class Position(x: Int, y: Int, direction: Direction) {
 			case North => Position(x, grid.moveNorth(y), direction)
 			case East  => Position(x + 1, y, direction)
 			case South => Position(x, grid.moveSouth(y), direction)
-			case West  => Position(x - 1, y, direction)
+			case West  => Position(grid.moveWest(x), y, direction)
 		}
 
 	def turnRight(): Position = Position(x, y, directionFor(direction.right).get)
@@ -65,5 +65,8 @@ case class Grid(x: Int, y: Int) {
 
 	def moveNorth(currentY: Int): Int =
 		if (currentY == y - 1) 0 else currentY + 1;
+
+	def moveWest(currentX: Int): Int =
+		if (currentX == 0) x - 1 else currentX - 1;
 }
 

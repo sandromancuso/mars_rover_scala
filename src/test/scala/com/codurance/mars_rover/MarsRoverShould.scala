@@ -97,4 +97,12 @@ class MarsRoverShould extends UnitSpec {
 
 		marsRover.position should be(Position(9, 0, North))
 	}
+
+	"wrap around through the west side of the grid" in new context {
+		override val marsRover = new MarsRover(GRID_10_x_10, Position(0, 0, West))
+
+		marsRover execute("M")
+
+		marsRover.position should be(Position(9, 0, West))
+	}
 }
