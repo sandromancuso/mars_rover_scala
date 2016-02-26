@@ -25,7 +25,7 @@ case class Position(x: Int, y: Int, direction: Direction) {
 			case North => Position(x, y + 1, direction)
 			case East => Position(x + 1, y, direction)
 			case South => Position(x, y - 1, direction)
-			case _ => this
+			case West => Position(x - 1, y, direction)
 		}
 
 	def turnRight(): Position = Position(x, y, directionFor(direction.right).get)
