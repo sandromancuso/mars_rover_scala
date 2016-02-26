@@ -52,4 +52,10 @@ class MarsRoverShould extends UnitSpec {
 
 		marsRover.position should be(Position(0, 0, South))
 	}
+
+	"turn left and right a few times" in new context {
+		marsRover execute("LLLRR")
+
+		marsRover.position should be(Position(0, 0, West))
+	}
 }
