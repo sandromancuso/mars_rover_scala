@@ -22,7 +22,7 @@ case class Position(x: Int, y: Int, direction: Direction) {
 
 	def moveAhead(grid: Grid): Position =
 		direction match {
-			case North => Position(x, y + 1, direction)
+			case North => Position(x, grid.moveNorth(y), direction)
 			case East  => Position(x + 1, y, direction)
 			case South => Position(x, grid.moveSouth(y), direction)
 			case West  => Position(x - 1, y, direction)
@@ -61,6 +61,9 @@ object Directions {
 case class Grid(x: Int, y: Int) {
 
 	def moveSouth(currentY: Int): Int =
-		if (currentY == 0) y - 1 else currentY -1;
+		if (currentY == 0) y - 1 else currentY - 1;
+
+	def moveNorth(currentY: Int): Int =
+		if (currentY == y - 1) 0 else currentY + 1;
 }
 
