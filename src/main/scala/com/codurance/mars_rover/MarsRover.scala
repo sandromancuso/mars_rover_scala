@@ -9,7 +9,7 @@ class MarsRover(grid: Grid, initialPosition: Position) {
 	def execute(commands: String) =
 	    commands.split("").foreach(cmd =>
 			cmd match {
-				case "M" => currentPosition = grid.move(currentPosition)
+				case "M" => currentPosition = grid.moveOnePoint(currentPosition)
 				case "R" => currentPosition = currentPosition.turnRight()
 				case "L" => currentPosition = currentPosition.turnLeft()
 			})
@@ -52,7 +52,7 @@ object Directions {
 
 case class Grid(x: Int, y: Int) {
 
-	def move(position: Position): Position =
+	def moveOnePoint(position: Position): Position =
 		position match {
 			case Position(px, py, North) => Position(px, moveNorth(py), North)
 			case Position(px, py, East)  => Position(moveEast(px), py, East)
