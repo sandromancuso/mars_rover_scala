@@ -58,4 +58,12 @@ class MarsRoverShould extends UnitSpec {
 
 		marsRover.position should be(Position(0, 0, West))
 	}
+
+	"move one point facing south" in new context {
+		override val marsRover = new MarsRover(Position(5, 5, South))
+
+		marsRover execute("M")
+
+		marsRover.position should be(Position(5, 4, South))
+	}
 }

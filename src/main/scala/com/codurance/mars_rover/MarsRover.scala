@@ -24,6 +24,7 @@ case class Position(x: Int, y: Int, direction: Direction) {
 		direction match {
 			case North => Position(x, y + 1, direction)
 			case East => Position(x + 1, y, direction)
+			case South => Position(x, y - 1, direction)
 			case _ => this
 		}
 
