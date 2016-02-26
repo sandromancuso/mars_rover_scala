@@ -8,9 +8,10 @@ import org.scalatest.junit.JUnitRunner
 class MarsRoverShould extends UnitSpec {
 
 	val INITIAL_POSITION = Position(0, 0, North)
+	val GRID_10_x_10 = Grid(10, 10)
 
 	trait context {
-		val marsRover = new MarsRover(INITIAL_POSITION)
+		val marsRover = new MarsRover(GRID_10_x_10, INITIAL_POSITION)
 	}
 
 	"return existing position" in new context {
@@ -60,7 +61,7 @@ class MarsRoverShould extends UnitSpec {
 	}
 
 	"move one point facing south" in new context {
-		override val marsRover = new MarsRover(Position(5, 5, South))
+		override val marsRover = new MarsRover(GRID_10_x_10, Position(5, 5, South))
 
 		marsRover execute("M")
 
@@ -68,7 +69,7 @@ class MarsRoverShould extends UnitSpec {
 	}
 
 	"move one point facing west" in new context {
-		override val marsRover = new MarsRover(Position(5, 5, West))
+		override val marsRover = new MarsRover(GRID_10_x_10, Position(5, 5, West))
 
 		marsRover execute("M")
 

@@ -2,7 +2,7 @@ package com.codurance.mars_rover
 
 import com.codurance.mars_rover.Directions.directionFor
 
-class MarsRover(initialPosition: Position) {
+class MarsRover(grid: Grid, initialPosition: Position) {
 
 	var currentPosition = initialPosition;
 
@@ -58,4 +58,5 @@ object Directions {
 
 }
 
+case class Grid(x: Int, y: Int)
 
