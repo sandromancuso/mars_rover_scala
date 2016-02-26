@@ -7,18 +7,16 @@ import org.scalatest.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class MarsRoverShould extends UnitSpec {
 
+	val INITIAL_POSITION = Position(0, 0, "N")
+
 	"return existing position" in {
-		val initialPosition = Position(0, 0, "N")
+		val marsRover = new MarsRover(INITIAL_POSITION)
 
-		val marsRover = new MarsRover(initialPosition)
-
-		marsRover.position should be(initialPosition)
+		marsRover.position should be(INITIAL_POSITION)
 	}
 
 	"move ahead" in {
-		val initialPosition = Position(0, 0, "N")
-
-		val marsRover = new MarsRover(initialPosition)
+		val marsRover = new MarsRover(INITIAL_POSITION)
 
 		marsRover execute("M")
 
