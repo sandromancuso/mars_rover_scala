@@ -17,7 +17,11 @@ class MarsRover(initialPosition: Position) {
 
 case class Position(x: Int, y: Int, direction: String) {
 
-	def moveAhead(): Position = Position(x, y + 1, direction)
+	def moveAhead(): Position =
+		direction match {
+			case "N" => Position(x, y + 1, direction)
+			case "E" => Position(x + 1, y, direction)
+		}
 
 	def turnRight(): Position = Position(x, y, "E")
 }
