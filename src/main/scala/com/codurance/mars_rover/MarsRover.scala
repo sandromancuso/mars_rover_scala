@@ -5,7 +5,8 @@ class MarsRover(initialPosition: Position) {
 	var currentPosition = initialPosition;
 
 	def execute(commands: String) =
-		currentPosition = currentPosition.moveAhead()
+	    commands.split("").foreach(cmd =>
+			currentPosition = currentPosition.moveAhead())
 
 	def position() = currentPosition;
 
