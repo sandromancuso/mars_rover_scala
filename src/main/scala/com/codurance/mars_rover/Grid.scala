@@ -2,12 +2,12 @@ package com.codurance.mars_rover
 
 case class Grid(x: Int, y: Int) {
 
-	def moveOnePoint(position: Position): Position =
+	def positionOfNextPoint(position: Position): Position =
 		position match {
 			case Position(px, py, North) => Position(px, moveNorth(py), North)
 			case Position(px, py, East)  => Position(moveEast(px), py, East)
 			case Position(px, py, South) => Position(px, moveSouth(py), South)
-			case Position(px, py, West)  => Position(moveWest(px), py, position.direction)
+			case Position(px, py, West)  => Position(moveWest(px), py, West)
 		}
 
 	private def moveSouth(currentY: Int): Int =
